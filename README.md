@@ -1,5 +1,5 @@
 # Chess
-# Goal
+## Goal
 This project is meant to serve as a backend for an AI chess bot which takes input data from a camera rather than a website.
 
 ## Motivation
