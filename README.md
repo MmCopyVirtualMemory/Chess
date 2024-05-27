@@ -3,19 +3,19 @@
 This project is meant to serve as a backend for an AI chess bot which takes input data from a camera rather than a website such as chess.com or lichess.org.
 
 ## Motivation
-Naturally, you cannot simply get the state of a chess game from only a board position. This is where Forsyth–Edwards Notation (FEN) comes into play. A FEN can fully describe the state of a chess game. Here is a breakdown of the FEN.
+Naturally, you cannot simply get the state of a chess game from only a board position. This is where Forsyth–Edwards Notation (FEN) comes into play. A FEN can fully describe the state of a chess game and can provide an engine with the information to find and consider all legal moves. Here is a breakdown of an example FEN.
 ```
 rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-position(white=upper,black=lower) turn castling(k=kingside,q=queenside) enpassant(potential enpassant square if pawn moves two squares) halfmoves fullmoves
+position(white=upper,black=lower) turn castling(k=kingside,q=queenside) enpassant(potential enpassant square if pawn moves two squares) #halfmoves #fullmoves
 ```
-The most important parts of the FEN are the position, turn, castling and enpassant. Halfmoves and fullmoves rarely come into play but I still handle them properly.
-
-
-
-in Forsyth–Edwards Notation (FEN) from an image. Of course, if you had a bunch of images in a row and were able to get the board position each time, you would be able to construct the FEN yourself. 
+The most important parts of the FEN are the position, turn, castling and enpassant (halfmoves and fullmoves rarely come into play but I still handle them properly). In the case of image processing, we only know one thing which is the board state. The board state cannot give us all the information we need, but of course, if you had a bunch of images in a row and were able to get the board position each time (starting from an initial known FEN), you would be able to construct the FEN yourself. This is EXACTLY what this project accomplishes.
 
 ## Implementation
-The way this project works is very simple. You start off by guessing the initial FEN of a board. If you make this guess sooner to the start of the game, you will likely be correct. Then, as each move occurs, you manually update the FEN and pass the data to stockfish to find the best move. 
+The way this project works is very simple. You start off by guessing the initial FEN of a board. If you make this guess at the start of the game, you will likely be correct. Then, as each move occurs, you manually update the FEN by following a set of rules and pass the data to stockfish to find the best move. I was extremely dissapointed to learn that many popular chess enhancement softwares simply glossed over this when an enpassant could decide the tide of a game!
+https://github.com/Psyyke/A.C.A.S/blob/1e15dc0c63153c932226a6314581c7b2dae859ca/acas.user.js#L1101
+```js
+const fullFen = `${basicFen} ${getPlayerColorVariable()} ${getRights()} - 0 1`;
+```
 
 ## Testing
 I have tested this for every move in one of my own chess games and it was able to perfectly reconstruct the FEN given each move as a new board state. It is possible I missed an edge case somewhere. Please open an issue with such edge case if you it.
