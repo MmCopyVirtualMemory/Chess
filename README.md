@@ -9,6 +9,6 @@ Naturally, you cannot simply get the state of a chess board in Forsyth–Edwards
 The way this project works is very simple. You start off by guessing the initial FEN of a board. If you make this guess sooner to the start of the game, you will likely be correct. Then, as each move occurs, you manually update the FEN and pass the data to stockfish to find the best move. 
 
 ## Testing
-I have tested this for every move in one of my own chess games and it was able to perfectly reconstruct the FEN given each move as a new board state.
+I have tested this for every move in one of my own chess games and it was able to perfectly reconstruct the FEN given each move as a new board state. It is possible I missed an edge case somewhere. Please open an issue with such edge case if you it.
 
 ## Example
