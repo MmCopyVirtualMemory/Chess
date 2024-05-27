@@ -21,6 +21,7 @@ The way this project works is very simple. You start off by guessing the initial
 I have tested this for every move in one of my own chess games and it was able to perfectly reconstruct the FEN given each move as a new board state. It is possible I missed an edge case somewhere. Please open an issue with such edge case if you it.
 
 ## Example
+#### Code
 ```py
 import stockfish
 import chess
@@ -37,8 +38,7 @@ print(new_fen)
 #we are passing the current board state, the depth we want stockfish to analyze and number of principle variations (different move options) we want to see.
 print(stockfish.evaluate(new_fen, 15, 3))
 ```
-
-### Output
+#### Output
 ```
 rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3 0 1
 [['g8f6', 'c2c4', 'e7e6', 'g1f3', 'd7d5', 'b1c3', 'c7c5', 'e2e3', 'c5d4', 'e3d4', 'f8e7', 'c1f4', 'b8c6'], ['e7e6', 'c2c4', 'g8f6', 'g1f3', 'd7d5', 'b1c3', 'f8b4', 'd1a4', 'b8c6', 'e2e3', 'c8d7', 'f1d3'], ['d7d5', 'c2c4', 'e7e6', 'b1c3', 'g8f6', 'c1g5', 'c7c5', 'c4d5', 'c5d4', 'd1d4', 'f8e7', 'e2e4', 'e6d5', 'g5f6', 'e7f6', 'd4d5', 'e8g8', 'd5d8', 'f8d8', 'f1c4', 'f6c3', 'b2c3']]
